@@ -27,7 +27,7 @@ public class AddressBookController {
 	@RequestMapping(value = { "", "/", "/get" })
 	public ResponseEntity<ResponseDTO> getAddressBookData() {
 		AddressBookData addressBookData = null;
-		addressBookData = new AddressBookData(1, new ContactDTO("Swathi", 999999999));
+		addressBookData = new AddressBookData(1, new ContactDTO("Swathi", "9999999999"));
 		ResponseDTO responseDTO = new ResponseDTO("Get Call Success", addressBookData);
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
 	}
@@ -35,7 +35,7 @@ public class AddressBookController {
 	@GetMapping("/get/{contactId}")
 	public ResponseEntity<ResponseDTO> getAddressBookData(@PathVariable("contactId") int contactId) {
 		AddressBookData addressBookData = null;
-		addressBookData = new AddressBookData(1, new ContactDTO("Swathi", 999999999));
+		addressBookData = new AddressBookData(1, new ContactDTO("Swathi", "9999999999"));
 		ResponseDTO responseDTO = new ResponseDTO("Get Call For ID Successful", addressBookData);
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
 	}

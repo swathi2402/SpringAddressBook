@@ -6,13 +6,13 @@ public class AddressBookData {
 
 	private int contactId;
 	private String name;
-	private long phoneNumber;
+	private String phoneNumber;
 
 	public AddressBookData(int contactId, ContactDTO contactDTO) {
 		super();
 		this.contactId = contactId;
-		this.name = name;
-		this.phoneNumber = phoneNumber;
+		this.name = contactDTO.name;
+		this.phoneNumber = contactDTO.phoneNumber;
 	}
 
 	public int getContactId() {
@@ -31,11 +31,11 @@ public class AddressBookData {
 		this.name = name;
 	}
 
-	public long getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(long phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 }

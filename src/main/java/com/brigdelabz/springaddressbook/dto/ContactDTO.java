@@ -3,9 +3,9 @@ package com.brigdelabz.springaddressbook.dto;
 public class ContactDTO {
 
 	public String name;
-	public long phoneNumber;
+	public String phoneNumber;
 
-	public ContactDTO(String name, long phoneNumber) {
+	public ContactDTO(String name, String phoneNumber) {
 		super();
 		this.name = name;
 		this.phoneNumber = phoneNumber;
