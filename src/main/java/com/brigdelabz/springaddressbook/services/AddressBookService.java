@@ -11,38 +11,38 @@ import com.brigdelabz.springaddressbook.model.AddressBookData;
 @Service
 public class AddressBookService implements IAddressBookService {
 
+	private List<AddressBookData> addressBookList = new ArrayList<>();
+
 	@Override
 	public List<AddressBookData> getAddressBookData() {
-		List<AddressBookData> addressBookList = new ArrayList<>();
-		addressBookList.add(new AddressBookData(1, new ContactDTO("Swathi", "9999999999")));
 		return addressBookList;
 	}
 
 	@Override
 	public AddressBookData getAddressBookDataById(int contactId) {
-		AddressBookData addressBookData = null;
-		addressBookData = new AddressBookData(1, new ContactDTO("Swathi", "9999999999"));
-		return addressBookData;
+		return addressBookList.get(contactId - 1);
 	}
 
 	@Override
 	public AddressBookData createAddressBookData(ContactDTO contactDTO) {
 		AddressBookData addressBookData = null;
-		addressBookData = new AddressBookData(1, contactDTO);
+		addressBookData = new AddressBookData(addressBookList.size() + 1, contactDTO);
+		addressBookList.add(addressBookData);
 		return addressBookData;
 	}
 
 	@Override
 	public AddressBookData updateAddressBookData(int contactId, ContactDTO contactDTO) {
-		AddressBookData addressBookData = null;
-		addressBookData = new AddressBookData(contactId, contactDTO);
+		AddressBookData addressBookData = this.getAddressBookDataById(contactId);
+		addressBookData.setName(contactDTO.name);
+		addressBookData.setPhoneNumber(contactDTO.phoneNumber);
+		addressBookList.set(contactId - 1, addressBookData);
 		return addressBookData;
 	}
 
 	@Override
 	public void deleteAddressBookData(int contactId) {
-		// TODO Auto-generated method stub
-
+		addressBookList.remove(contactId - 1);
 	}
 
 }
