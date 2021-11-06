@@ -21,10 +21,8 @@ public class AddressBookService implements IAddressBookService {
 
 	@Override
 	public AddressBookData getAddressBookDataById(int contactId) {
-		return addressBookList.stream()
-							  .filter(contact -> contact.getContactId() == contactId)
-							  .findFirst()
-							  .orElseThrow(() -> new AddressBookException("Contact Not Found"));
+		return addressBookList.stream().filter(contact -> contact.getContactId() == contactId).findFirst()
+				.orElseThrow(() -> new AddressBookException("Contact Not Found"));
 	}
 
 	@Override
@@ -46,7 +44,7 @@ public class AddressBookService implements IAddressBookService {
 
 	@Override
 	public void deleteAddressBookData(int contactId) {
-		addressBookList.remove(contactId - 1);
+		addressBookList.remove(getAddressBookDataById(contactId));
 	}
 
 }

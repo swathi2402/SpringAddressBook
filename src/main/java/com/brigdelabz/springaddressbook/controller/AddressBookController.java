@@ -24,7 +24,7 @@ import com.brigdelabz.springaddressbook.services.IAddressBookService;
 @RestController
 @RequestMapping("/addressbook")
 public class AddressBookController {
-	
+
 	@Autowired
 	private IAddressBookService addressBookService;
 
@@ -69,7 +69,7 @@ public class AddressBookController {
 	@DeleteMapping("/delete/{contactId}")
 	public ResponseEntity<ResponseDTO> deleteAddressBookData(@PathVariable("contactId") int contactId) {
 		addressBookService.deleteAddressBookData(contactId);
-		ResponseDTO responseDTO = new ResponseDTO("Delete Call Success for id: " + contactId, HttpStatus.OK);
+		ResponseDTO responseDTO = new ResponseDTO("Delete Call Success for id: " + contactId, "Deleted Id:" + contactId);
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
 	}
 }
