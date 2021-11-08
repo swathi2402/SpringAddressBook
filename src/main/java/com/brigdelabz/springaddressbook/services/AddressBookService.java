@@ -1,6 +1,5 @@
 package com.brigdelabz.springaddressbook.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,25 +18,22 @@ public class AddressBookService implements IAddressBookService {
 
 	@Autowired
 	private AddressBookRepository addressBookRepository;
-	
-	private List<AddressBookData> addressBookList = new ArrayList<>();
 
 	@Override
 	public List<AddressBookData> getAddressBookData() {
-		return addressBookList;
+		return addressBookRepository.findAll();
 	}
 
 	@Override
 	public AddressBookData getAddressBookDataById(int contactId) {
-		return addressBookList.stream().filter(contact -> contact.getContactId() == contactId).findFirst()
-				.orElseThrow(() -> new AddressBookException("Contact Not Found"));
+		return addressBookRepository.findById(contactId)
+				.orElseThrow(() -> new AddressBookException("Contact with Id " + contactId + " does not exists..!"));
 	}
 
 	@Override
 	public AddressBookData createAddressBookData(ContactDTO contactDTO) {
 		AddressBookData addressBookData = null;
 		addressBookData = new AddressBookData(contactDTO);
-		addressBookList.add(addressBookData);
 		log.debug("Contact: " + addressBookData.toString());
 		return addressBookRepository.save(addressBookData);
 	}
@@ -45,15 +41,14 @@ public class AddressBookService implements IAddressBookService {
 	@Override
 	public AddressBookData updateAddressBookData(int contactId, ContactDTO contactDTO) {
 		AddressBookData addressBookData = this.getAddressBookDataById(contactId);
-		addressBookData.setFirstName(contactDTO.firstName);
-		addressBookData.setPhoneNumber(contactDTO.phoneNumber);
-		addressBookList.set(contactId - 1, addressBookData);
-		return addressBookData;
+		addressBookData.updateAddressBookData(contactDTO);
+		return addressBookRepository.save(addressBookData);
 	}
 
 	@Override
 	public void deleteAddressBookData(int contactId) {
-		addressBookList.remove(getAddressBookDataById(contactId));
+		AddressBookData addressBookData = this.getAddressBookDataById(contactId);
+		addressBookRepository.delete(addressBookData);
 	}
 
 }
