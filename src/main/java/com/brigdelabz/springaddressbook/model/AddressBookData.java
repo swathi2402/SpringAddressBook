@@ -5,24 +5,26 @@ import com.brigdelabz.springaddressbook.dto.ContactDTO;
 public class AddressBookData {
 
 	private int contactId;
-	 public String firstName;
-	    public String lastName;
-	    public String address;
-	    public String state;
-	    public String city;
-	    public String zip;
-	    public String phoneNumber;
+	public String firstName;
+	public String lastName;
+	public String address;
+	public String state;
+	public String city;
+	public String zip;
+	public String phoneNumber;
+	public String email;
 
 	public AddressBookData(int contactId, ContactDTO contactDTO) {
 		super();
 		this.contactId = contactId;
 		this.firstName = contactDTO.firstName;
-        this.lastName = contactDTO.lastName;
-        this.address = contactDTO.address;
-        this.state = contactDTO.state;
-        this.city = contactDTO.city;
-        this.zip = contactDTO.zip;
-        this.phoneNumber = contactDTO.phoneNumber;
+		this.lastName = contactDTO.lastName;
+		this.address = contactDTO.address;
+		this.state = contactDTO.state;
+		this.city = contactDTO.city;
+		this.zip = contactDTO.zip;
+		this.phoneNumber = contactDTO.phoneNumber;
+		this.email = contactDTO.email;
 	}
 
 	public int getContactId() {
@@ -89,4 +91,11 @@ public class AddressBookData {
 		this.phoneNumber = phoneNumber;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 }
