@@ -36,7 +36,7 @@ public class AddressBookService implements IAddressBookService {
 	@Override
 	public AddressBookData updateAddressBookData(int contactId, ContactDTO contactDTO) {
 		AddressBookData addressBookData = this.getAddressBookDataById(contactId);
-		addressBookData.setName(contactDTO.name);
+		addressBookData.setFirstName(contactDTO.firstName);
 		addressBookData.setPhoneNumber(contactDTO.phoneNumber);
 		addressBookList.set(contactId - 1, addressBookData);
 		return addressBookData;
